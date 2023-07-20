@@ -1,0 +1,10 @@
+[gd_scene load_steps=2 format=3 uid="uid://ewhm7aiiybqi"]
+
+[ext_resource type="Script" path="res://aircraft/aircraft.gd" id="1_g2isc"]
+
+[node name="Aircraft" type="Area2D"]
+script = ExtResource("1_g2isc")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]

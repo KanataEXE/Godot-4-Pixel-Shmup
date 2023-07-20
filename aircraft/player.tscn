@@ -1,0 +1,20 @@
+[gd_scene load_steps=5 format=3 uid="uid://s7uuw1tfepbx"]
+
+[ext_resource type="PackedScene" uid="uid://ewhm7aiiybqi" path="res://aircraft/aircraft.tscn" id="1_w01ny"]
+[ext_resource type="Texture2D" uid="uid://c7ch77esnyvwc" path="res://common/tilemaps/aircraft_packed.png" id="2_3yarv"]
+[ext_resource type="Script" path="res://aircraft/player.gd" id="2_06shm"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_jd461"]
+size = Vector2(8, 18)
+
+[node name="Player" instance=ExtResource("1_w01ny")]
+script = ExtResource("2_06shm")
+speed = 150.0
+
+[node name="Sprite2D" parent="." index="0"]
+texture = ExtResource("2_3yarv")
+region_enabled = true
+region_rect = Rect2(32, 32, 32, 32)
+
+[node name="CollisionShape2D" parent="." index="1"]
+shape = SubResource("RectangleShape2D_jd461")
