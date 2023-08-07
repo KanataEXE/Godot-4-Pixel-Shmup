@@ -1,5 +1,6 @@
-[gd_scene load_steps=9 format=3 uid="uid://bl3vby5pvyha7"]
+[gd_scene load_steps=10 format=3 uid="uid://bl3vby5pvyha7"]
 
+[ext_resource type="Script" path="res://levels/base_level.gd" id="1_cy3vk"]
 [ext_resource type="Texture2D" uid="uid://c6gt70k1awk5s" path="res://common/tilemaps/tiles_packed.png" id="1_mc5oi"]
 [ext_resource type="PackedScene" uid="uid://s7uuw1tfepbx" path="res://aircraft/player.tscn" id="2_tjppu"]
 [ext_resource type="PackedScene" uid="uid://ce6nen81v35rw" path="res://aircraft/enemy.tscn" id="3_y2qy0"]
@@ -258,6 +259,7 @@ _data = {
 }
 
 [node name="BaseLevel" type="Node2D"]
+script = ExtResource("1_cy3vk")
 
 [node name="Tilemaps" type="Node2D" parent="."]
 position = Vector2(0, -1024)
@@ -276,6 +278,7 @@ position = Vector2(192, 448)
 
 [node name="Enemy" parent="Enemies" instance=ExtResource("3_y2qy0")]
 position = Vector2(192, 64)
+speed = 0.0
 
 [node name="Bullets" type="Node2D" parent="."]
 
@@ -284,3 +287,5 @@ autoplay = "default"
 libraries = {
 "": SubResource("AnimationLibrary_egtaj")
 }
+
+[connection signal="shot" from="Players/Player" to="." method="_on_aircraft_shot"]

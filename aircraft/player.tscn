@@ -1,20 +1,31 @@
-[gd_scene load_steps=5 format=3 uid="uid://s7uuw1tfepbx"]
+[gd_scene load_steps=6 format=3 uid="uid://s7uuw1tfepbx"]
 
 [ext_resource type="PackedScene" uid="uid://ewhm7aiiybqi" path="res://aircraft/aircraft.tscn" id="1_w01ny"]
 [ext_resource type="Texture2D" uid="uid://c7ch77esnyvwc" path="res://common/tilemaps/aircraft_packed.png" id="2_3yarv"]
 [ext_resource type="Script" path="res://aircraft/player.gd" id="2_06shm"]
+[ext_resource type="PackedScene" uid="uid://c0w3u4nfend22" path="res://bullets/player_bullet.tscn" id="3_sq5aq"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_jd461"]
 size = Vector2(8, 18)
 
 [node name="Player" instance=ExtResource("1_w01ny")]
+collision_mask = 2
 script = ExtResource("2_06shm")
 speed = 150.0
+can_shoot = true
+bullet_scene = ExtResource("3_sq5aq")
 
-[node name="Sprite2D" parent="." index="0"]
+[node name="GunTimer" parent="." index="0"]
+wait_time = 0.25
+one_shot = true
+
+[node name="Sprite2D" parent="." index="1"]
 texture = ExtResource("2_3yarv")
 region_enabled = true
 region_rect = Rect2(32, 32, 32, 32)
 
-[node name="CollisionShape2D" parent="." index="1"]
+[node name="CollisionShape2D" parent="." index="2"]
 shape = SubResource("RectangleShape2D_jd461")
+
+[node name="Muzzle" parent="." index="3"]
+position = Vector2(0, -9)

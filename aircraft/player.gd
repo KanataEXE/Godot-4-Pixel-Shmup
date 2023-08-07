@@ -16,3 +16,13 @@ func control(delta: float) -> void:
 	
 	global_position.x = clamp(global_position.x, MINIMUM_SCREEN_LIMIT.x, MAXIMUM_SCREEN_LIMIT.x)
 	global_position.y = clamp(global_position.y, MINIMUM_SCREEN_LIMIT.y, MAXIMUM_SCREEN_LIMIT.y)
+	
+	if Input.is_action_pressed("shoot") and can_shoot:
+		shoot()
+
+
+func shoot() -> void:
+	can_shoot = false
+	gun_timer.start()
+	var direction := Vector2.UP
+	shot.emit(bullet_scene, muzzle, direction)
