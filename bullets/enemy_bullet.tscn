@@ -1,0 +1,23 @@
+[gd_scene load_steps=4 format=3 uid="uid://dal2x7klrntxd"]
+
+[ext_resource type="PackedScene" uid="uid://w6p5rx5wlhh2" path="res://bullets/bullet.tscn" id="1_3aw6m"]
+[ext_resource type="Texture2D" uid="uid://c6gt70k1awk5s" path="res://common/tilemaps/tiles_packed.png" id="2_isapw"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_c3wbl"]
+size = Vector2(14, 10)
+
+[node name="EnemyBullet" instance=ExtResource("1_3aw6m")]
+collision_mask = 1
+speed = 125.0
+damage = 10.0
+
+[node name="Sprite2D" parent="." index="0"]
+texture = ExtResource("2_isapw")
+region_enabled = true
+region_rect = Rect2(48, 0, 16, 16)
+
+[node name="CollisionShape2D" parent="." index="1"]
+shape = SubResource("RectangleShape2D_c3wbl")
+
+[node name="VisibleOnScreenNotifier2D" parent="." index="2"]
+scale = Vector2(0.7, 0.5)

@@ -289,3 +289,4 @@ libraries = {
 }
 
 [connection signal="shot" from="Players/Player" to="." method="_on_aircraft_shot"]
+[connection signal="shot" from="Enemies/Enemy" to="." method="_on_aircraft_shot"]

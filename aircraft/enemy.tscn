@@ -1,8 +1,9 @@
-[gd_scene load_steps=5 format=3 uid="uid://ce6nen81v35rw"]
+[gd_scene load_steps=6 format=3 uid="uid://ce6nen81v35rw"]
 
 [ext_resource type="PackedScene" uid="uid://ewhm7aiiybqi" path="res://aircraft/aircraft.tscn" id="1_cl44u"]
 [ext_resource type="Texture2D" uid="uid://c7ch77esnyvwc" path="res://common/tilemaps/aircraft_packed.png" id="2_27kgq"]
 [ext_resource type="Script" path="res://aircraft/enemy.gd" id="2_cydke"]
+[ext_resource type="PackedScene" uid="uid://dal2x7klrntxd" path="res://bullets/enemy_bullet.tscn" id="3_qt1if"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_hcm6l"]
 size = Vector2(16, 16)
@@ -12,6 +13,7 @@ collision_layer = 2
 script = ExtResource("2_cydke")
 health = 30.0
 speed = 100.0
+bullet_scene = ExtResource("3_qt1if")
 
 [node name="Sprite2D" parent="." index="1"]
 rotation = 3.14159
@@ -25,4 +27,16 @@ scale = Vector2(0.8, 0.8)
 [node name="CollisionShape2D" parent="." index="3"]
 shape = SubResource("RectangleShape2D_hcm6l")
 
+[node name="Muzzle" parent="." index="4"]
+position = Vector2(0, 8)
+
+[node name="DetectArea" type="Area2D" parent="." index="5"]
+collision_layer = 0
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="DetectArea" index="0"]
+polygon = PackedVector2Array(0, 0, 768, 512, -768, 512)
+
+[connection signal="screen_entered" from="VisibleOnScreenNotifier2D" to="." method="_on_visible_on_screen_notifier_2d_screen_entered"]
 [connection signal="screen_exited" from="VisibleOnScreenNotifier2D" to="." method="_on_visible_on_screen_notifier_2d_screen_exited"]
+[connection signal="area_entered" from="DetectArea" to="." method="_on_detect_area_area_entered"]
+[connection signal="area_exited" from="DetectArea" to="." method="_on_detect_area_area_exited"]

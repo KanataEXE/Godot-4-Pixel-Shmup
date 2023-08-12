@@ -23,6 +23,7 @@ func _physics_process(delta: float) -> void:
 	control(delta)
 
 
+@warning_ignore("unused_parameter")
 func control(delta: float) -> void:
 	pass
 
