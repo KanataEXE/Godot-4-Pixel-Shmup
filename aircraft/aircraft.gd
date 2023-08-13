@@ -12,6 +12,7 @@ signal shot
 
 @onready var gun_timer := $GunTimer
 @onready var muzzle := $Muzzle
+@onready var animation_player := $AnimationPlayer
 
 var velocity: Vector2
 var is_alive := true
@@ -36,9 +37,13 @@ func hit(damage: float) -> void:
 	health -= damage
 	if health <= 0.0:
 		die()
+	else:
+		animation_player.play("hit")
 
 
 func die() -> void:
+	animation_player.play("explosion")
+	await animation_player.animation_finished
 	queue_free()
 
 
