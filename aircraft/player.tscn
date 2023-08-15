@@ -24,8 +24,8 @@ texture = ExtResource("2_3yarv")
 region_enabled = true
 region_rect = Rect2(32, 32, 32, 32)
 
-[node name="CollisionShape2D" parent="." index="2"]
+[node name="CollisionShape2D" parent="." index="3"]
 shape = SubResource("RectangleShape2D_jd461")
 
-[node name="Muzzle" parent="." index="3"]
+[node name="Muzzle" parent="." index="4"]
 position = Vector2(0, -9)

@@ -2,8 +2,8 @@
 
 [ext_resource type="Script" path="res://levels/base_level.gd" id="1_cy3vk"]
 [ext_resource type="Texture2D" uid="uid://c6gt70k1awk5s" path="res://common/tilemaps/tiles_packed.png" id="1_mc5oi"]
+[ext_resource type="PackedScene" uid="uid://ce6nen81v35rw" path="res://aircraft/enemy.tscn" id="2_i3jvj"]
 [ext_resource type="PackedScene" uid="uid://s7uuw1tfepbx" path="res://aircraft/player.tscn" id="2_tjppu"]
-[ext_resource type="PackedScene" uid="uid://ce6nen81v35rw" path="res://aircraft/enemy.tscn" id="3_y2qy0"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_bqpgw"]
 texture = ExtResource("1_mc5oi")
@@ -260,6 +260,11 @@ _data = {
 
 [node name="BaseLevel" type="Node2D"]
 script = ExtResource("1_cy3vk")
+enemy_scene = ExtResource("2_i3jvj")
+
+[node name="SpawnTimer" type="Timer" parent="."]
+wait_time = 1.25
+autostart = true
 
 [node name="Tilemaps" type="Node2D" parent="."]
 position = Vector2(0, -1024)
@@ -276,10 +281,6 @@ position = Vector2(192, 448)
 
 [node name="Enemies" type="Node2D" parent="."]
 
-[node name="Enemy" parent="Enemies" instance=ExtResource("3_y2qy0")]
-position = Vector2(192, 64)
-speed = 0.0
-
 [node name="Bullets" type="Node2D" parent="."]
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
@@ -288,5 +289,5 @@ libraries = {
 "": SubResource("AnimationLibrary_egtaj")
 }
 
+[connection signal="timeout" from="SpawnTimer" to="." method="_on_spawn_timer_timeout"]
 [connection signal="shot" from="Players/Player" to="." method="_on_aircraft_shot"]
-[connection signal="shot" from="Enemies/Enemy" to="." method="_on_aircraft_shot"]

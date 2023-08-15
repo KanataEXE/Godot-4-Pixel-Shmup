@@ -42,6 +42,7 @@ func hit(damage: float) -> void:
 
 
 func die() -> void:
+	is_alive = false
 	animation_player.play("explosion")
 	await animation_player.animation_finished
 	queue_free()

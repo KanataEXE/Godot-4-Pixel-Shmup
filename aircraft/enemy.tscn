@@ -24,17 +24,17 @@ region_rect = Rect2(64, 64, 32, 32)
 [node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="." index="2"]
 scale = Vector2(0.8, 0.8)
 
-[node name="CollisionShape2D" parent="." index="3"]
+[node name="CollisionShape2D" parent="." index="4"]
 shape = SubResource("RectangleShape2D_hcm6l")
-
-[node name="Muzzle" parent="." index="4"]
-position = Vector2(0, 8)
 
 [node name="DetectArea" type="Area2D" parent="." index="5"]
 collision_layer = 0
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="DetectArea" index="0"]
 polygon = PackedVector2Array(0, 0, 768, 512, -768, 512)
+
+[node name="Muzzle" parent="." index="6"]
+position = Vector2(0, 8)
 
 [connection signal="screen_entered" from="VisibleOnScreenNotifier2D" to="." method="_on_visible_on_screen_notifier_2d_screen_entered"]
 [connection signal="screen_exited" from="VisibleOnScreenNotifier2D" to="." method="_on_visible_on_screen_notifier_2d_screen_exited"]
