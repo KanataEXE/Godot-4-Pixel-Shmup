@@ -4,6 +4,8 @@ extends Aircraft
 const MINIMUM_SCREEN_LIMIT := Vector2(0 + 16, 0 + 16)
 const MAXIMUM_SCREEN_LIMIT := Vector2(384 - 16, 512 - 16)
 
+@onready var invincibility_timer := $InvincibilityTimer
+
 var input_direction: Vector2
 
 
@@ -26,3 +28,26 @@ func shoot() -> void:
 	gun_timer.start()
 	var direction := Vector2.UP
 	shot.emit(bullet_scene, muzzle, direction)
+
+
+func hit(damage: float) -> void:
+	if invincibility_timer.is_stopped():
+		health -= damage
+		if health <= 0.0:
+			die()
+		else:
+			animation_player.play("hit")
+
+
+func die() -> void:
+	is_alive = false
+	animation_player.play("explosion")
+	await animation_player.animation_finished
+	
+	is_alive = true
+	invincibility_timer.start()
+	animation_player.play("Players/respawn")
+
+
+func _on_invincibility_timer_timeout() -> void:
+	animation_player.play("RESET")

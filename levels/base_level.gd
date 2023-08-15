@@ -11,7 +11,7 @@ func _on_spawn_timer_timeout() -> void:
 	enemies.add_child(enemy)
 	
 	enemy.global_position.y = -64
-	enemy.global_position.x = randi() % 369 + 16
+	enemy.global_position.x = randi() % 353 + 16
 	
 	enemy.connect("shot", _on_aircraft_shot)
 
