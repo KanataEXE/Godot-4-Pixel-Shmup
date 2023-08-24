@@ -1,6 +1,8 @@
 class_name Enemy
 extends Aircraft
 
+@export var score: int
+
 var target: Player = null
 
 
@@ -23,6 +25,14 @@ func shoot() -> void:
 	var direction = (target_position - muzzle_position).normalized()
 	
 	shot.emit(bullet_scene, muzzle, direction)
+
+
+func die() -> void:
+	GameData.score += score
+	is_alive = false
+	animation_player.play("explosion")
+	await animation_player.animation_finished
+	queue_free()
 
 
 func _on_visible_on_screen_notifier_2d_screen_entered() -> void:

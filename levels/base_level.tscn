@@ -1,9 +1,10 @@
-[gd_scene load_steps=10 format=3 uid="uid://bl3vby5pvyha7"]
+[gd_scene load_steps=11 format=3 uid="uid://bl3vby5pvyha7"]
 
 [ext_resource type="Script" path="res://levels/base_level.gd" id="1_cy3vk"]
 [ext_resource type="Texture2D" uid="uid://c6gt70k1awk5s" path="res://common/tilemaps/tiles_packed.png" id="1_mc5oi"]
 [ext_resource type="PackedScene" uid="uid://ce6nen81v35rw" path="res://aircraft/enemy.tscn" id="2_i3jvj"]
 [ext_resource type="PackedScene" uid="uid://s7uuw1tfepbx" path="res://aircraft/player.tscn" id="2_tjppu"]
+[ext_resource type="PackedScene" uid="uid://p71qh28xismj" path="res://user_interfaces/hud.tscn" id="3_4f7kp"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_bqpgw"]
 texture = ExtResource("1_mc5oi")
@@ -261,6 +262,10 @@ _data = {
 [node name="BaseLevel" type="Node2D"]
 script = ExtResource("1_cy3vk")
 enemy_scene = ExtResource("2_i3jvj")
+
+[node name="UILayer" type="CanvasLayer" parent="."]
+
+[node name="HUD" parent="UILayer" instance=ExtResource("3_4f7kp")]
 
 [node name="SpawnTimer" type="Timer" parent="."]
 wait_time = 1.25

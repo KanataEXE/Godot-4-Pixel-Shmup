@@ -44,9 +44,14 @@ func die() -> void:
 	animation_player.play("explosion")
 	await animation_player.animation_finished
 	
-	is_alive = true
-	invincibility_timer.start()
-	animation_player.play("Players/respawn")
+	GameData.lives -= 1
+	
+	if GameData.lives >= 0:
+		is_alive = true
+		invincibility_timer.start()
+		animation_player.play("Players/respawn")
+	else:
+		pass
 
 
 func _on_invincibility_timer_timeout() -> void:

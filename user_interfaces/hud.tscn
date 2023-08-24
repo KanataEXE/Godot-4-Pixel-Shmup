@@ -1,0 +1,49 @@
+[gd_scene load_steps=4 format=3 uid="uid://p71qh28xismj"]
+
+[ext_resource type="Script" path="res://user_interfaces/hud.gd" id="1_kt0pd"]
+[ext_resource type="PackedScene" uid="uid://c8x4jgowtkv3f" path="res://user_interfaces/player_life.tscn" id="2_map5o"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_wudcq"]
+outline_size = 4
+outline_color = Color(0, 0, 0, 1)
+
+[node name="HUD" type="MarginContainer"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 8
+theme_override_constants/margin_top = 8
+theme_override_constants/margin_right = 8
+theme_override_constants/margin_bottom = 8
+script = ExtResource("1_kt0pd")
+player_life_scene = ExtResource("2_map5o")
+
+[node name="ScoreLifeContainer" type="VBoxContainer" parent="."]
+layout_mode = 2
+
+[node name="ScoreContainer" type="HBoxContainer" parent="ScoreLifeContainer"]
+layout_mode = 2
+
+[node name="ScoreLabel" type="Label" parent="ScoreLifeContainer/ScoreContainer"]
+layout_mode = 2
+text = "Score:"
+label_settings = SubResource("LabelSettings_wudcq")
+
+[node name="ScoreValue" type="Label" parent="ScoreLifeContainer/ScoreContainer"]
+layout_mode = 2
+text = "000000"
+label_settings = SubResource("LabelSettings_wudcq")
+
+[node name="LifeContainer" type="HBoxContainer" parent="ScoreLifeContainer"]
+layout_mode = 2
+
+[node name="PlayerLife" parent="ScoreLifeContainer/LifeContainer" instance=ExtResource("2_map5o")]
+layout_mode = 2
+
+[node name="PlayerLife2" parent="ScoreLifeContainer/LifeContainer" instance=ExtResource("2_map5o")]
+layout_mode = 2
+
+[node name="PlayerLife3" parent="ScoreLifeContainer/LifeContainer" instance=ExtResource("2_map5o")]
+layout_mode = 2
