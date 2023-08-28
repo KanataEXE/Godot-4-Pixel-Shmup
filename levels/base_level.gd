@@ -2,6 +2,8 @@ extends Node2D
 
 @export var enemy_scene: PackedScene
 
+@onready var game_over_screen := $UILayer/GameOverScreen
+@onready var spawn_timer := $SpawnTimer
 @onready var enemies := $Enemies
 @onready var bullets := $Bullets
 
@@ -22,3 +24,13 @@ func _on_aircraft_shot(bullet_scene: PackedScene, muzzle: Marker2D, direction: V
 	bullet.global_transform = muzzle.global_transform
 	bullet.direction = direction
 	bullet.global_rotation = direction.angle()
+
+
+func _on_game_over_screen_restarted() -> void:
+	GameData.lives = 3
+	get_tree().reload_current_scene()
+
+
+func _on_player_died() -> void:
+	spawn_timer.stop()
+	game_over_screen.show()

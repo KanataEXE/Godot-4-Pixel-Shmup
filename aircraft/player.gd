@@ -1,6 +1,8 @@
 class_name Player
 extends Aircraft
 
+signal died
+
 const MINIMUM_SCREEN_LIMIT := Vector2(0 + 16, 0 + 16)
 const MAXIMUM_SCREEN_LIMIT := Vector2(384 - 16, 512 - 16)
 
@@ -46,12 +48,13 @@ func die() -> void:
 	
 	GameData.lives -= 1
 	
-	if GameData.lives >= 0:
+	if GameData.lives > 0:
 		is_alive = true
 		invincibility_timer.start()
 		animation_player.play("Players/respawn")
 	else:
-		pass
+		died.emit()
+		queue_free()
 
 
 func _on_invincibility_timer_timeout() -> void:

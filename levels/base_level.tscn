@@ -1,10 +1,11 @@
-[gd_scene load_steps=11 format=3 uid="uid://bl3vby5pvyha7"]
+[gd_scene load_steps=12 format=3 uid="uid://bl3vby5pvyha7"]
 
 [ext_resource type="Script" path="res://levels/base_level.gd" id="1_cy3vk"]
 [ext_resource type="Texture2D" uid="uid://c6gt70k1awk5s" path="res://common/tilemaps/tiles_packed.png" id="1_mc5oi"]
 [ext_resource type="PackedScene" uid="uid://ce6nen81v35rw" path="res://aircraft/enemy.tscn" id="2_i3jvj"]
 [ext_resource type="PackedScene" uid="uid://s7uuw1tfepbx" path="res://aircraft/player.tscn" id="2_tjppu"]
 [ext_resource type="PackedScene" uid="uid://p71qh28xismj" path="res://user_interfaces/hud.tscn" id="3_4f7kp"]
+[ext_resource type="PackedScene" uid="uid://dwp80hkbmsqhj" path="res://user_interfaces/game_over_screen.tscn" id="4_3eyn4"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_bqpgw"]
 texture = ExtResource("1_mc5oi")
@@ -267,6 +268,9 @@ enemy_scene = ExtResource("2_i3jvj")
 
 [node name="HUD" parent="UILayer" instance=ExtResource("3_4f7kp")]
 
+[node name="GameOverScreen" parent="UILayer" instance=ExtResource("4_3eyn4")]
+visible = false
+
 [node name="SpawnTimer" type="Timer" parent="."]
 wait_time = 1.25
 autostart = true
@@ -294,5 +298,7 @@ libraries = {
 "": SubResource("AnimationLibrary_egtaj")
 }
 
+[connection signal="restarted" from="UILayer/GameOverScreen" to="." method="_on_game_over_screen_restarted"]
 [connection signal="timeout" from="SpawnTimer" to="." method="_on_spawn_timer_timeout"]
+[connection signal="died" from="Players/Player" to="." method="_on_player_died"]
 [connection signal="shot" from="Players/Player" to="." method="_on_aircraft_shot"]
